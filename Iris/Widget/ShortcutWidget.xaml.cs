@@ -20,9 +20,64 @@ namespace Iris.Widget
     /// </summary>
     public partial class ShortcutWidget : UserControl
     {
+        public static readonly DependencyProperty DisplayNameProperty =
+            DependencyProperty.Register("DisplayName", typeof(string), typeof(ShortcutWidget), new PropertyMetadata(OnPropertiesChangeCallback));
+        public static readonly DependencyProperty DescriptionProperty =
+            DependencyProperty.Register("Description", typeof(string), typeof(ShortcutWidget), new PropertyMetadata(OnPropertiesChangeCallback));
+        public static readonly DependencyProperty UrlProperty =
+            DependencyProperty.Register("Url", typeof(string), typeof(ShortcutWidget), new PropertyMetadata(string.Empty));
+
+        private static void OnPropertiesChangeCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is ShortcutWidget widget)
+                widget.UpdateData();
+        }
+
+        public required string DisplayName
+        {
+            get => (string)GetValue(DisplayNameProperty);
+            set => SetValue(DisplayNameProperty, value);
+        }
+        public required string Description
+        {
+            get => (string)GetValue(DescriptionProperty);
+            set => SetValue(DescriptionProperty, value);
+        }
+        public required string Url
+        {
+            get => (string)GetValue(UrlProperty);
+            set => SetValue(UrlProperty, value);
+        }
+
+
         public ShortcutWidget()
         {
             InitializeComponent();
+
+            TitleLabel.Text = DisplayName;
+            DescriptionLabel.Text = Description;
+        }
+
+        public void OpenUrl(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = Url,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Impossible d'ouvrir l'URL : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void UpdateData()         
+        {
+            TitleLabel.Text = DisplayName;
+            DescriptionLabel.Text = Description;
         }
     }
 }
