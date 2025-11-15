@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Iris.Service;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,7 +17,7 @@ namespace Iris
     /// </summary>
     public partial class MainWindow : Window
     {
-        public UserControl CurrentPage { get; set; }
+        public UIElement CurrentPage { get; set; }
 
         public MainWindow()
         {
@@ -27,11 +28,15 @@ namespace Iris
             var result = UptimeKumaService.CallUptime("eogend");
         }
 
-        private void OpenShortcuts(object sender, RoutedEventArgs e) => OpenPage(ShortcutsPage);
-        private void OpenHome(object sender, RoutedEventArgs e) => OpenPage(HomePage);
+        private void OpenShortcuts(object sender, RoutedEventArgs e) => OpenPage(ShortcutsPage, "RACCOURCIS");
+        private void OpenHome(object sender, RoutedEventArgs e) => OpenPage(HomePage, "ACCUEIL");
+        private void OpenChatGPT(object sender, RoutedEventArgs e) => OpenPage(ChatGPTPage, "CHATGPT");
+        private void OpenMonitorEogend(object sender, RoutedEventArgs e) => OpenPage(MonitorEogendPage, "MONITORING EOGEND");
+        private void OpenMonitorPerso(object sender, RoutedEventArgs e) => OpenPage(MonitorPersoPage, "MONITORING PERSONNEL");
 
-        private void OpenPage(UserControl page)
+        private void OpenPage(UIElement page, string titlePage)
         {
+            TitleLabel.Content = "IRIS - " + titlePage;
             CurrentPage.Visibility = Visibility.Collapsed;
             page.Visibility = Visibility.Visible;
             CurrentPage = page;

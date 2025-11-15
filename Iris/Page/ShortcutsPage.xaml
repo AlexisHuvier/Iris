@@ -15,10 +15,6 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-
-            </Grid.RowDefinitions>
-
             <widgets:ShortcutWidget Grid.Row="0" Grid.Column="0" DisplayName="Eogend" Description="Site principal d'Eogend" Url="https://eogend.fr" />
             <widgets:ShortcutWidget Grid.Row="0" Grid.Column="1" DisplayName="YouTube" Description="Site de partage de vidéos" Url="https://www.youtube.com" />
             <widgets:ShortcutWidget Grid.Row="0" Grid.Column="2" DisplayName="Herobrine.fr" Description="Site principale d'HB.fr" Url="https://herobrine.fr" />

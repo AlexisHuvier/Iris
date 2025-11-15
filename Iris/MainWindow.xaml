@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         xmlns:local="clr-namespace:Iris"
         xmlns:pages="clr-namespace:Iris.Page"
         mc:Ignorable="d"
@@ -25,6 +26,9 @@
                         </Menu.ItemsPanel>
                         <MenuItem Header="Accueil" Foreground="White" Click="OpenHome" />
                         <MenuItem Header="Raccourcis" Foreground="White" Click="OpenShortcuts" />
+                        <MenuItem Header="ChatGPT" Foreground="White" Click="OpenChatGPT" />
+                        <MenuItem Header="Eogend" Foreground="White" Click="OpenMonitorEogend" />
+                        <MenuItem Header="Perso" Foreground="White" Click="OpenMonitorPerso" />
                     </Menu>
                 </DockPanel>
             </materialDesign:ColorZone>
@@ -44,12 +48,21 @@
                     </Grid.ColumnDefinitions>
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                 x:Name="MenuToggleButton" Grid.Column="0"/>
-                    <Label Content="IRIS" Grid.Column="1" Style="{StaticResource MaterialDesignLabel}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Foreground="White"/>
+                    <Label Content="IRIS - ACCUEIL" x:Name="TitleLabel" Grid.Column="1" Style="{StaticResource MaterialDesignLabel}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Foreground="White"/>
                 </Grid>
             </materialDesign:ColorZone>
 
             <pages:HomePage x:Name="HomePage" Grid.Row="1" />
             <pages:ShortcutsPage x:Name="ShortcutsPage" Grid.Row="1" Visibility="Collapsed" />
+            <DockPanel x:Name="ChatGPTPage" Visibility="Collapsed" Grid.Row="1">
+                <wv2:WebView2CompositionControl Source="https://www.chatgpt.com" />
+            </DockPanel>
+            <DockPanel x:Name="MonitorEogendPage" Visibility="Collapsed" Grid.Row="1">
+                <wv2:WebView2CompositionControl Source="https://uptime.lavapower.fr/status/eogend" />
+            </DockPanel>
+            <DockPanel x:Name="MonitorPersoPage" Visibility="Collapsed" Grid.Row="1">
+                <wv2:WebView2CompositionControl Source="https://uptime.lavapower.fr/status/perso" />
+            </DockPanel>
         </Grid>
     </materialDesign:DrawerHost>
 </Window>
