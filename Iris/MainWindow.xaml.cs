@@ -23,6 +23,8 @@ namespace Iris
             InitializeComponent();
 
             CurrentPage = HomePage;
+
+            var result = UptimeKumaService.CallUptime("eogend");
         }
 
         private void OpenShortcuts(object sender, RoutedEventArgs e) => OpenPage(ShortcutsPage);
