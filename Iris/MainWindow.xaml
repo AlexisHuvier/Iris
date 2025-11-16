@@ -13,7 +13,7 @@
         Title="MainWindow" Height="450" Width="800">
     <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
         <materialDesign:DrawerHost.LeftDrawerContent>
-            <materialDesign:ColorZone Padding="16" Mode="PrimaryDark" DockPanel.Dock="Top" Width="212" VerticalAlignment="Stretch">
+            <materialDesign:ColorZone Padding="16" Mode="PrimaryDark" DockPanel.Dock="Top" Width="250" VerticalAlignment="Stretch">
                 <DockPanel>
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                               DockPanel.Dock="Top" HorizontalAlignment="Right"
@@ -21,14 +21,14 @@
                     <Menu>
                         <Menu.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <VirtualizingStackPanel/>
+                                <VirtualizingStackPanel />
                             </ItemsPanelTemplate>
                         </Menu.ItemsPanel>
                         <MenuItem Header="Accueil" Foreground="White" Click="OpenHome" />
                         <MenuItem Header="Raccourcis" Foreground="White" Click="OpenShortcuts" />
                         <MenuItem Header="ChatGPT" Foreground="White" Click="OpenChatGPT" />
-                        <MenuItem Header="Eogend" Foreground="White" Click="OpenMonitorEogend" />
-                        <MenuItem Header="Perso" Foreground="White" Click="OpenMonitorPerso" />
+                        <MenuItem Header="UP Eogend" Foreground="White" Click="OpenMonitorEogend"  />
+                        <MenuItem Header="UP Personnel" Foreground="White" Click="OpenMonitorPerso" />
                     </Menu>
                 </DockPanel>
             </materialDesign:ColorZone>
@@ -57,12 +57,8 @@
             <DockPanel x:Name="ChatGPTPage" Visibility="Collapsed" Grid.Row="1">
                 <wv2:WebView2CompositionControl Source="https://www.chatgpt.com" />
             </DockPanel>
-            <DockPanel x:Name="MonitorEogendPage" Visibility="Collapsed" Grid.Row="1">
-                <wv2:WebView2CompositionControl Source="https://uptime.lavapower.fr/status/eogend" />
-            </DockPanel>
-            <DockPanel x:Name="MonitorPersoPage" Visibility="Collapsed" Grid.Row="1">
-                <wv2:WebView2CompositionControl Source="https://uptime.lavapower.fr/status/perso" />
-            </DockPanel>
+            <pages:UptimePage x:Name="MonitorEogendPage" Visibility="Collapsed" Grid.Row="1" Title="Eogend" Slug="eogend" />
+            <pages:UptimePage x:Name="MonitorPersoPage" Visibility="Collapsed" Grid.Row="1" Title="Personnel" Slug="perso" />
         </Grid>
     </materialDesign:DrawerHost>
 </Window>

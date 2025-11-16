@@ -24,15 +24,13 @@ namespace Iris
             InitializeComponent();
 
             CurrentPage = HomePage;
-
-            var result = UptimeKumaService.CallUptime("eogend");
         }
 
         private void OpenShortcuts(object sender, RoutedEventArgs e) => OpenPage(ShortcutsPage, "RACCOURCIS");
         private void OpenHome(object sender, RoutedEventArgs e) => OpenPage(HomePage, "ACCUEIL");
         private void OpenChatGPT(object sender, RoutedEventArgs e) => OpenPage(ChatGPTPage, "CHATGPT");
-        private void OpenMonitorEogend(object sender, RoutedEventArgs e) => OpenPage(MonitorEogendPage, "MONITORING EOGEND");
-        private void OpenMonitorPerso(object sender, RoutedEventArgs e) => OpenPage(MonitorPersoPage, "MONITORING PERSONNEL");
+        private void OpenMonitorEogend(object sender, RoutedEventArgs e) => OpenPage(MonitorEogendPage, "UPTIME EOGEND");
+        private void OpenMonitorPerso(object sender, RoutedEventArgs e) => OpenPage(MonitorPersoPage, "UPTIME PERSONNEL");
 
         private void OpenPage(UIElement page, string titlePage)
         {
